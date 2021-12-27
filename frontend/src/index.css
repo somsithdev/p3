@@ -231,3 +231,22 @@ button[disabled] {
   background-color: gray;
   color: rgb(182, 169, 169);
 }
+
+/* Form */
+.form {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.form > div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1rem;
+}
+
+.form label {
+  text-align: left;
+  margin: 1rem;
+  display: block;
+}

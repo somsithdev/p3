@@ -16,7 +16,6 @@ const data = {
   ],
   products: [
     {
-      _id: "1",
       name: "Champian Tshirt",
       category: "Shirts",
       image: "/images/product1.jpg",
@@ -28,7 +27,6 @@ const data = {
       description: "High Quarity product",
     },
     {
-      _id: "2",
       name: "Test2 shirt",
       category: "Shirts",
       image: "/images/product2.jpg",
@@ -40,7 +38,6 @@ const data = {
       description: "High Quarity product",
     },
     {
-      _id: "3",
       name: "Test3 shirt",
       category: "Shirts",
       image: "/images/product3.jpg",
@@ -52,7 +49,6 @@ const data = {
       description: "High Quarity product",
     },
     {
-      _id: "4",
       name: "Test4 Tshirt",
       category: "Shirts",
       image: "/images/product4.jpg",
@@ -64,7 +60,6 @@ const data = {
       description: "High Quarity product",
     },
     {
-      _id: "5",
       name: "Test5 shirt",
       category: "Shirts",
       image: "/images/product5.jpg",
@@ -76,7 +71,6 @@ const data = {
       description: "High Quarity product",
     },
     {
-      _id: "6",
       name: "Test6 shirt",
       category: "Shirts",
       image: "/images/product6.jpg",
