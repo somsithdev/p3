@@ -1,18 +1,43 @@
-import express from 'express';
-import  data from "./data.js";
-const  app = express();
+import express from "express";
+import data from "./data.js";
+import mongoose from "mongoose";
+import userRouter from "./routers/userRouter.js";
 
-app.get("/api/products", (req, res) =>{
-    res.send(data.products);
-})
+const app = express();
 
-app.get('/', (req, res) =>{
-    res.send('Server is  ready');
+mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/shopping", {
+  useNewUrlParser: true,
+  // useUnifiedTopology: true,
+  // useCreateIndex: true,
 });
-const port = process.env.PORT  || 5000
+
+app.get("/api/products", (req, res) => {
+  res.send(data.products);
+});
+
+app.get("/api/products/:id", (req, res) => {
+  console.log(data);
+  const product = data.products.find((x) => x._id == req.params.id);
+
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: "product not found!" });
+  }
+});
+
+app.use("/api/users", userRouter);
+
+app.get("/", (req, res) => {
+  res.send("Server is  ready");
+});
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
+
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-    console.log(`Serve at http://localhost:${port}`);
+  console.log(`Serve at http://localhost:${port}`);
 });
-
-

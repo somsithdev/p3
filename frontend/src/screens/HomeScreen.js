@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import data from "../data";
 import Product from "../components/Product";
 import MessageBox from "../components/MessageBox";
 import LoadingBox from "../components/LoadingBox";
@@ -14,17 +12,17 @@ export default function ProductScreen() {
 
   useEffect(() => {
     dispatch(listProducts());
-  }, []);
+  }, [dispatch]);
+
   return (
     <div>
-      TEST
       {loading ? (
-        <LoadingBox></LoadingBox>
+        <LoadingBox> </LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className="row center">
-          {data.products.map((product) => (
+          {products.map((product) => (
             <Product key={product._id} product={product} />
           ))}
         </div>
