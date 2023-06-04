@@ -6,10 +6,9 @@
   "description": "Somsith PHONPHAKDY 20180281",
   "main": "index.js",
   "scripts": {
-    "scripts": {
     "build": "echo 'Running build script...'",
     "deploy": "echo 'Running deploy script...'",
-       "test": "echo 'Running test script...'",
+    "test": "echo 'Running test script...'",
     "start": "node index.js"
   },
  
