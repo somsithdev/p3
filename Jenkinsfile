@@ -28,12 +28,15 @@ pipeline{
 				sh 'docker push somsithbook00700/shopping-frontend-image:latest'
 			}
 		}
-		stage('Frontend Peploy') {
-
-			steps {
-				sh 'docker run -p 3000:3000 somsithbook00700/shopping-frontend-image:latest'
-			}
-		}
+		stage('Deploy') {
+            steps {
+                // Pull the Docker image from Docker Hub
+                sh 'docker pull somsithbook00700/shopping-frontend-image:latest'
+                
+                // Run the Docker container using the pulled image
+                sh 'docker run -d -p 3000:3000 somsithbook00700/shopping-frontend-image:latest npm start'
+           	 }
+        }
 	}
 
 	
