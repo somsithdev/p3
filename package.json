@@ -9,7 +9,7 @@
     "build": "echo 'Running build script...'",
     "deploy": "echo 'Running deploy script...'",
     "test": "echo 'Running test script...'",
-    "start": "node index.js"
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
   },
  
   "author": "",
