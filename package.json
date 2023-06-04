@@ -6,8 +6,14 @@
   "description": "Somsith PHONPHAKDY 20180281",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+    "scripts": {
+    "build": "echo 'Running build script...'",
+    "deploy": "echo 'Running deploy script...'",
+       "test": "echo 'Running test script...'",
+    "start": "node index.js"
   },
+    //"start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+ 
   "author": "",
   "license": "ISC",
   "dependencies": {
