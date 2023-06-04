@@ -8,32 +8,33 @@ pipeline{
 
 	stages {
 
-		stage('Build') {
+		stage('Frontend Build') {
 
 			steps {
 				sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
 			}
 		}
 
-		stage('Login') {
+		stage('Frontend Login') {
 
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
-		stage('Push') {
+		stage('Frontend Push') {
 
 			steps {
 				sh 'docker push somsithbook00700/shopping-frontend-image:latest'
 			}
 		}
-	}
+		stage('Frontend Peploy') {
 
-	post {
-		always {
-			sh 'docker logout'
+			steps {
+				sh 'docker run -p 3000:3000 somsithbook00700/shopping-frontend-image:latest'
+			}
 		}
 	}
 
+	
 }
