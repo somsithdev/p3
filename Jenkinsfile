@@ -11,7 +11,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t somsithdev/shopping-frontend-image:latest .'
+				sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
 			}
 		}
 
@@ -25,7 +25,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push somsithdev/shopping-frontend-image:latest'
+				sh 'docker push somsithbook00700/shopping-frontend-image:latest'
 			}
 		}
 	}
