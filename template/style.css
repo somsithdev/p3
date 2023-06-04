@@ -1,0 +1,119 @@
+html {
+  font-size: 62.5%;
+  /* 16px  x 62.4 =10px = 1rem */
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Layout */
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "Header"
+    "Main"
+    "Footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%;
+}
+
+Header {
+  grid-area: header;
+  background-color: #78b417;
+  padding: 1rem;
+}
+Main {
+  grid-area: main;
+  padding: 1rem;
+}
+Footer {
+  grid-area: footer;
+  background-color: #78b417;
+  color: white;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+/* Common */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #295f3b;
+}
+
+/* Header */
+Header a {
+  color: white;
+  padding: 1rem;
+}
+
+a.brand {
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row.center {
+  justify-content: center;
+}
+
+/* Image */
+image {
+  border-radius: 0.5rem;
+}
+img.medium {
+  max-width: 29rem;
+  width: 100%;
+}
+
+/* Card */
+.card {
+  border: 0.1rem #78b417 solid;
+  background-color: #f8f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-body > * {
+  margin-bottom: 0.5rem;
+}
+
+.price {
+  font-size: 2rem;
+}
+
+/* Ratting */
+.rating span {
+  color: gold;
+  margin: 0.1rem;
+}
+
+/* Signin */
+.container {
+  border: 1px solid;
+  margin: center;
+  background-color: black;
+}

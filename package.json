@@ -1,0 +1,38 @@
+{
+  "name": "shopping",
+  "proxy": "http://localhost:5000",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Somsith PHONPHAKDY 20180281",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.2",
+    "multer": "^1.4.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.1",
+    "nodemon": "^2.0.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/somsithdev/p3.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/somsithdev/p3/issues"
+  },
+  "homepage": "https://github.com/somsithdev/p3#readme"
+}
