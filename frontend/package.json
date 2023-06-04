@@ -23,13 +23,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-<<<<<<< HEAD
     "build": "set \"CI=false\" && react-scripts build",
     "test": "echo 'testing process'",
-=======
-    "build": "set \"CI=false\" && react-scripts build",
-    "test": "echo 'testing process'",
->>>>>>> ae15cf35eb3f5eef5cd9b9606051488b914b26af
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
