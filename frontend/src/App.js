@@ -274,7 +274,7 @@ function App() {
           className="row center"
           style={{ backgroundColor: "#f5f5f5", color: "#9c7373" }}
         >
-          Project III - Somsith PHONPHAKDY 20180281
+          Project - Somsith PHONPHAKDY
         </footer>
       </div>
     </BrowserRouter>
