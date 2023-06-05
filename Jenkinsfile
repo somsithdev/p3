@@ -9,7 +9,7 @@ pipeline{
 	stages {
 
 		stage('Frontend Build') {
-			dir('frontend/') {
+			dir('frontend') {
 				steps {
 					sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
 				}
