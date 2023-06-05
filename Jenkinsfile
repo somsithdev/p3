@@ -22,9 +22,14 @@ pipeline{
 		}
 
 		stage('Build') {
-			dir('frontend'){
+			
 			steps {
-				sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
+				script {
+                    // Change working directory to 'frontend'
+                    dir('frontend') {
+                        sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
+                    }
+                }
 			}
 			}
 		}
