@@ -38,7 +38,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push somsithbook007700/shopping-frontend-image:latest'
+				sh 'docker push somsithbook00700/shopping-frontend-image:latest'
 			}
 		}
 	}
