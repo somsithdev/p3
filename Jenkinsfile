@@ -9,12 +9,12 @@ pipeline{
 	stages {
 
 		stage('Frontend Build') {
-
-			steps {
-				sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
+			dir('frontend/') {
+				steps {
+					sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
+				}
 			}
 		}
-
 		stage('Frontend Login') {
 
 			steps {
@@ -23,7 +23,7 @@ pipeline{
 		}
 
 		stage('Frontend Push') {
-
+			
 			steps {
 				sh 'docker push somsithbook00700/shopping-frontend-image:latest'
 			}
