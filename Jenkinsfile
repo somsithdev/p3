@@ -63,8 +63,13 @@ pipeline {
         }
         stage('Create Network') {
             steps {
-                // Create the Docker network
-                sh 'docker network create shopping-network'
+                // Create the Docker network if it doesn't exist already
+                script {
+                    def networkExists = sh(script: 'docker network inspect shopping-network', returnStatus: true)
+                    if (networkExists != 0) {
+                        sh 'docker network create shopping-network'
+                    }
+                }
             }
         }
           stage('Backend Deploy') {
