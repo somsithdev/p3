@@ -64,7 +64,7 @@ pipeline {
           stage('Backend Deploy') {
                 steps {
                             // Run the Docker container using the pushed image
-                            sh "docker run -d -p 5000:5000 --name backend-container somsithbook00700/shopping-backend-image:latest"
+                            sh "docker run -d --name backend-container --network shopping-network -p 5000:5000  somsithbook00700/shopping-backend-image:latest"
                 }
             }
         
@@ -74,7 +74,7 @@ pipeline {
                     // Change working directory to 'frontend'
                     dir('frontend') {
                         // Run the Docker container using the pushed image
-                        sh "docker run -d -p 3000:3000 --network container:backend-container somsithbook00700/shopping-frontend-image:latest"
+                        sh "docker run -d --name frontend-container --network shopping-network -p 3000:3000 somsithbook00700/shopping-frontend-image:latest"
                     }
                 }
             }
