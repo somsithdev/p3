@@ -19,13 +19,19 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Frontend Build') {
             steps {
                 script {
                     // Change working directory to 'frontend'
                     dir('frontend') {
                         sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
                     }
+                }
+            }
+        }
+        stage('Backend Build') {
+            steps {
+                        sh 'docker build -t somsithbook00700/shopping-backend-image:latest .'
                 }
             }
         }
@@ -41,18 +47,23 @@ pipeline {
             }
         }
 
-        stage('Push') {
+        stage('Frontend Push') {
             steps {
                 script {
                     // Change working directory to 'frontend'
                     dir('frontend') {
-                        sh 'docker push somsithbook00700/shopping-frontend-image:latest'
+                        sh 'docker push somsithbook00700/shopping-backend-image:latest'
                     }
                 }
             }
         }
+            stage('Backend Push') {
+            steps {
+                        sh 'docker push somsithbook00700/shopping-backend-image:latest'
+            }
+        }
 
-        stage('Deploy') {
+        stage('Frontend Deploy') {
             steps {
                 script {
                     // Change working directory to 'frontend'
@@ -63,5 +74,11 @@ pipeline {
                 }
             }
         }
+        stage('Backend Deploy') {
+                steps {
+                            // Run the Docker container using the pushed image
+                            sh "docker run -d -p 5000:5000 somsithbook00700/shopping-backend-image:latest"
+                }
+            }
     }
 }
