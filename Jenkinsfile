@@ -34,7 +34,6 @@ pipeline {
                         sh 'docker build -t somsithbook00700/shopping-backend-image:latest .'
                 }
             }
-        }
 
         stage('Login') {
             steps {
