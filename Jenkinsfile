@@ -61,6 +61,12 @@ pipeline {
                         sh 'docker push somsithbook00700/shopping-backend-image:latest'
             }
         }
+        stage('Create Network') {
+            steps {
+                // Create the Docker network
+                sh 'docker network create shopping-network'
+            }
+        }
           stage('Backend Deploy') {
                 steps {
                                 // Remove the existing container with the same name
