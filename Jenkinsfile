@@ -1,6 +1,6 @@
 pipeline{
 
-	agent {label 'linux'}
+	agent any
 
 	environment {
 		DOCKERHUB_CREDENTIALS=credentials('ccd3b51c-da26-49b1-9149-0937d00ba993')
