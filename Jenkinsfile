@@ -41,12 +41,13 @@ pipeline{
 				sh 'docker push somsithbook00700/shopping-frontend-image:latest'
 			}
 		}
+		stage('Deploy') {
+			    steps {
+				// Run the Docker container using the pushed image
+				sh "docker run -d -p 3000:3000 somsithbook00700/shopping-frontend-image:latest"
+            }
+        }
 	}
 
-	post {
-		always {
-			sh 'docker logout'
-		}
-	}
 
 }
