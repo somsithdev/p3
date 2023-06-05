@@ -24,7 +24,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t somsithbook007700/shopping-frontend-image:latest .'
+				sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
 			}
 		}
 
