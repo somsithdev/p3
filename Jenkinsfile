@@ -63,6 +63,8 @@ pipeline {
         }
           stage('Backend Deploy') {
                 steps {
+                                // Remove the existing container with the same name
+                            sh 'docker rm -f backend-container'
                             // Run the Docker container using the pushed image
                             sh "docker run -d --name backend-container --network shopping-network -p 5000:5000  somsithbook00700/shopping-backend-image:latest"
                 }
@@ -73,6 +75,8 @@ pipeline {
                 script {
                     // Change working directory to 'frontend'
                     dir('frontend') {
+                        // Remove the existing container with the same name
+                        sh 'docker rm -f frontend-container'
                         // Run the Docker container using the pushed image
                         sh "docker run -d --name frontend-container --network shopping-network -p 3000:3000 somsithbook00700/shopping-frontend-image:latest"
                     }
