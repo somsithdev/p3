@@ -1,43 +1,41 @@
-pipeline{
+pipeline {
+    agent any
 
-	agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('ac38cece-176b-41a1-a1b2-df53421c866f')
+    }
 
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('ac38cece-176b-41a1-a1b2-df53421c866f')
-	}
+    stages {
+        stage('Frontend Build') {
+            steps {
+                dir('frontend') {
+                    sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
+                }
+            }
+        }
 
-	stages {
+        stage('Frontend Login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: DOCKERHUB_CREDENTIALS, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                    sh 'echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin'
+                }
+            }
+        }
 
-		stage('Frontend Build') {
-			dir('frontend') {
-				steps {
-					sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
-				}
-			}
-		}
-		stage('Frontend Login') {
+        stage('Frontend Push') {
+            steps {
+                sh 'docker push somsithbook00700/shopping-frontend-image:latest'
+            }
+        }
 
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-		stage('Frontend Push') {
-			
-			steps {
-				sh 'docker push somsithbook00700/shopping-frontend-image:latest'
-			}
-		}
-		stage('Deploy') {
+        stage('Deploy') {
             steps {
                 // Pull the Docker image from Docker Hub
                 sh 'docker pull somsithbook00700/shopping-frontend-image:latest'
-                
+
                 // Run the Docker container using the pulled image
                 sh 'docker run -d -p 3000:3000 somsithbook00700/shopping-frontend-image:latest npm start'
-           	 }
+            }
         }
-	}
-
-	
+    }
 }
