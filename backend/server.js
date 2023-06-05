@@ -12,7 +12,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/shopping", {
+// mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/shopping", {
+//   useNewUrlParser: true,
+//   // useUnifiedTopology: true,
+//   // useCreateIndex: true,
+// });
+
+mongoose.connect(process.env.MONGODB_URL || "mongodb+srv://inter00700:inter00700@shopping.24sneqn.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   // useUnifiedTopology: true,
   // useCreateIndex: true,
