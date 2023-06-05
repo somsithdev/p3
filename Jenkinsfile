@@ -22,30 +22,35 @@ pipeline{
 		}
 
 		stage('Build') {
-
+			dir('frontend'){
 			steps {
 				sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
+			}
 			}
 		}
 
 		stage('Login') {
-
+			dir('frontend'){
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
 			}
 		}
 
 		stage('Push') {
-
+			dir('frontend'){
 			steps {
 				sh 'docker push somsithbook00700/shopping-frontend-image:latest'
 			}
+			}
 		}
 		stage('Deploy') {
+			dir('frontend'){
 			    steps {
 				// Run the Docker container using the pushed image
 				sh "docker run -d -p 3000:3000 somsithbook00700/shopping-frontend-image:latest"
             }
+			}
         }
 	}
 
