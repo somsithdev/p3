@@ -1,41 +1,46 @@
-pipeline {
-    agent any
+pipeline{
 
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('ac38cece-176b-41a1-a1b2-df53421c866f')
-    }
+	agent {label 'linux'}
 
-    stages {
-        stage('Frontend Build') {
-            steps {
-                dir('frontend') {
-                    sh 'docker build -t somsithbook00700/shopping-frontend-image:latest .'
-                }
-            }
-        }
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('ccd3b51c-da26-49b1-9149-0937d00ba993')
+	}
 
-        stage('Frontend Login') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: DOCKERHUB_CREDENTIALS, usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                    sh 'echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin'
-                }
-            }
-        }
+	stages {
+	    
+	    stage('gitclone') {
 
-        stage('Frontend Push') {
-            steps {
-                sh 'docker push somsithbook00700/shopping-frontend-image:latest'
-            }
-        }
+			steps {
+				git 'https://github.com/somsithdev/p3.git'
+			}
+		}
 
-        stage('Deploy') {
-            steps {
-                // Pull the Docker image from Docker Hub
-                sh 'docker pull somsithbook00700/shopping-frontend-image:latest'
+		stage('Build') {
 
-                // Run the Docker container using the pulled image
-                sh 'docker run -d -p 3000:3000 somsithbook00700/shopping-frontend-image:latest npm start'
-            }
-        }
-    }
+			steps {
+				sh 'docker build -t somsithbook007700/shopping-frontend-image:latest .'
+			}
+		}
+
+		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push somsithbook007700/shopping-frontend-image:latest'
+			}
+		}
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
+
 }
