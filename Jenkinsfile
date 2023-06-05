@@ -11,7 +11,13 @@ pipeline{
 	    stage('gitclone') {
 
 			steps {
-				git 'https://github.com/somsithdev/p3.git'
+				checkout([$class: 'GitSCM',
+                          branches: [[name: 'main']],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[credentialsId: 'ccd3b51c-da26-49b1-9149-0937d00ba993', url: 'https://github.com/somsithdev/p3.git']]
+                ])
 			}
 		}
 
